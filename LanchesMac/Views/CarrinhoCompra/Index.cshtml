@@ -1,0 +1,62 @@
+﻿@model CarrinhoCompraViewModel
+
+<div class="container">
+<div class="=row"
+
+    <img src="~/images/icons8-carrinho-de-compras-16.png"/>
+
+     <div>
+         <h4>Seu carrinho de compras:</h4>
+     </div>
+     <table class="table table-bordered table-striped">
+
+         <thead>
+             <tr>
+                 <th>Quantidade</th>
+                 <th>Lanche</th>
+                 <th class="text-right">preço</th>
+                 <th class="text-right">subtotal</th>
+                 <th></th>
+             </tr>
+
+         </thead>
+
+         <tbody>
+            @foreach(var item in Model.CarrinhoCompra.CarrinhoCompraItems)
+            {
+                <tr>
+                    <td class="text-center">@item.Quantidade</td>
+                    <td class="text-left">@item.Lanche.Name</td>
+                    <td class="text-right">@item.Lanche.Preco.ToString("e")</td>
+
+                    <td class="text-right">@((item.Quantidade * item.Lanche.Preco).ToString("e"))
+
+                    </td>
+                    <td class="text-center">
+                        <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra"
+                        asp-route-lancheId="@item.Lanche.LancheId"><img src="~/images/icons8-excluir-16.png" />
+                    </a>
+                    </td>
+                </tr>        
+
+            }
+         </tbody>
+         <tfoot>
+             <tr>
+                 <td colspan="3" class="text-right">Total:</td>
+                 <td class="text-right">
+                     @Model.CarrinhoCompraTotal.ToString("e")
+                 </td>
+             </tr>
+         </tfoot>
+     </table>
+     <div class="text-right">
+         <div class="btn-group">
+             <a class="btn btn-sucess" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a> 
+             &nbsp;&nbsp;&nbsp;
+             <a class="btn btn-sucess" asp-controller="Lanche" asp-action="List">Continuar Comprando</a> 
+         </div>
+     </div>
+     <br />
+</div>
+</div>

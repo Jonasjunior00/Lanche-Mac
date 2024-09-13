@@ -1,0 +1,12 @@
+﻿@model Lanche
+
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <p><img src="@Model.ImageURL" class="img-fluid"></p>
+    <h3>Preço : @Model.Preco.ToString("C",System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")) Euro</h3>
+    <h4>@Model.Name</h4>
+    <h4>Descrição: @Model.DescriptionShort</h4>
+</div>
+
+
+
+
